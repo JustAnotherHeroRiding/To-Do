@@ -30,7 +30,7 @@ function addNewTask() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
     updateList();
   } else {
-    newTaskError.textContent = "Please enter a task";
+    newTaskError.textContent = "Please enter a task.";
     newTaskError.style.opacity = "0";
 
     if (fadeOutTimer) {
