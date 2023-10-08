@@ -27,8 +27,8 @@ li {
   transition: opacity 0.5s ease; /* Adjust the duration and timing function as needed */
 }
 
-li.fade-out {
-  opacity: 0;
+.fade-out {
+  opacity: 0 !important;
 }
 
 .remove-btn {
@@ -45,7 +45,7 @@ li.fade-out {
   width: 80%;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2em;
+  margin-bottom: 0.5em;
 }
 
 #newTask {
@@ -93,4 +93,11 @@ button {
   display: flex;
   margin-top: auto;
   margin: auto 0;
+}
+
+#newTaskError {
+  color: #d83f31;
+  font-weight: 700;
+  opacity: 1;
+  transition: opacity 3s ease;
 }

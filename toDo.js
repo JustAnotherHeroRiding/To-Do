@@ -5,6 +5,7 @@ const newTaskForm = document.getElementById("newTaskForm");
 const searchInput = document.getElementById("searchBar");
 const searchForm = document.getElementById("searchForm");
 const clearAll = document.getElementById("clearAll");
+const newTaskError = document.getElementById("newTaskError");
 
 function getTasksFromLocalStorage() {
   const storedTasks = localStorage.getItem("tasks");
@@ -18,6 +19,26 @@ function searchTasks(query) {
   );
 
   return results;
+}
+
+function addNewTask() {
+  const tasks = getTasksFromLocalStorage();
+  const newTask = newTaskInput.value.trim();
+
+  if (newTask !== "") {
+    tasks.push(newTask);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    updateList();
+  } else {
+    newTaskError.textContent = "Please enter a task";
+    newTaskError.style.opacity = "0";
+
+    setTimeout(() => {
+      newTaskError.textContent = "";
+    }, 3000);
+  }
+
+  newTaskInput.value = "";
 }
 
 function clearTasks() {
@@ -43,7 +64,7 @@ function getTasks(tasks) {
 
         setTimeout(() => {
           newListItem.remove();
-        }, 500);
+        }, 400);
       }
     });
     newListItem.textContent = task;
@@ -69,24 +90,12 @@ function updateSearchResults() {
 }
 
 addTaskBtn.addEventListener("click", () => {
-  const tasks = getTasksFromLocalStorage();
-  const newTask = newTaskInput.value;
-  if (newTask !== "") {
-    tasks.push(newTask);
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-    updateList();
-  }
+  addNewTask();
 });
 
 newTaskForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  const tasks = getTasksFromLocalStorage();
-  const newTask = newTaskInput.value;
-  if (newTask !== "") {
-    tasks.push(newTask);
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-    updateList();
-  }
+  addNewTask();
 });
 
 searchForm.addEventListener("submit", (event) => {
