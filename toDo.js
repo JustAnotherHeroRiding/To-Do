@@ -1,6 +1,7 @@
 const list = document.getElementById("taskList");
 const addTaskBtn = document.getElementById("addTask");
 const newTaskInput = document.getElementById("newTask");
+const newTaskForm = document.getElementById("newTaskForm");
 const searchInput = document.getElementById("searchBar");
 const searchForm = document.getElementById("searchForm");
 const clearAll = document.getElementById("clearAll");
@@ -12,14 +13,16 @@ function getTasksFromLocalStorage() {
 function searchTasks(query) {
   const tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
 
-  const results = tasks.filter((task) => task.toLowerCase().includes(query.toLowerCase()));
+  const results = tasks.filter((task) =>
+    task.toLowerCase().includes(query.toLowerCase())
+  );
 
   return results;
 }
 
 function clearTasks() {
-    localStorage.clear();
-    list.innerHTML = "";
+  localStorage.clear();
+  list.innerHTML = "";
 }
 
 function getTasks(tasks) {
@@ -35,7 +38,12 @@ function getTasks(tasks) {
       if (taskIndex !== -1) {
         tasks.splice(taskIndex, 1);
         localStorage.setItem("tasks", JSON.stringify(tasks));
-        newListItem.remove();
+
+        newListItem.classList.add("fade-out");
+
+        setTimeout(() => {
+          newListItem.remove();
+        }, 500);
       }
     });
     newListItem.textContent = task;
@@ -70,14 +78,24 @@ addTaskBtn.addEventListener("click", () => {
   }
 });
 
+newTaskForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const tasks = getTasksFromLocalStorage();
+  const newTask = newTaskInput.value;
+  if (newTask !== "") {
+    tasks.push(newTask);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    updateList();
+  }
+});
+
 searchForm.addEventListener("submit", (event) => {
   event.preventDefault();
   updateSearchResults();
 });
 
-
 clearAll.addEventListener("click", () => {
-    clearTasks();
-})
+  clearTasks();
+});
 
 updateList();
