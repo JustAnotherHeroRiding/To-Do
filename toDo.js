@@ -32,8 +32,10 @@ function addNewTask() {
   } else {
     newTaskError.textContent = "Please enter a task";
     newTaskError.style.opacity = "0";
+    console.log(newTaskError);
 
     setTimeout(() => {
+      newTaskError.style.opacity = "1";
       newTaskError.textContent = "";
     }, 3000);
   }
