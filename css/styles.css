@@ -99,5 +99,5 @@ button {
   color: #d83f31;
   font-weight: 700;
   opacity: 1;
-  transition: opacity 3s ease;
+  transition: opacity 3s ease-in-out;
 }

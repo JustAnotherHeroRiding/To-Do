@@ -20,7 +20,7 @@ function searchTasks(query) {
 
   return results;
 }
-
+let fadeOutTimer;
 function addNewTask() {
   const tasks = getTasksFromLocalStorage();
   const newTask = newTaskInput.value.trim();
@@ -32,9 +32,13 @@ function addNewTask() {
   } else {
     newTaskError.textContent = "Please enter a task";
     newTaskError.style.opacity = "0";
-    console.log(newTaskError);
 
-    setTimeout(() => {
+    if (fadeOutTimer) {
+      clearTimeout(fadeOutTimer);
+      newTaskError.style.opacity = "1";
+    }
+
+    fadeOutTimer = setTimeout(() => {
       newTaskError.style.opacity = "1";
       newTaskError.textContent = "";
     }, 3000);
