@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8" />
+    <title>To Do</title>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link
+      href="//fonts.googleapis.com/css?family=Raleway:400,300,600"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/skeleton.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <script src="toDo.js" defer></script>
+  </head>
+  <body>
+    <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <div class="container flex-main">
+      <h1>To-Do!</h1>
+      <form id="searchForm" action="">
+        <span id="searchIcon" class="material-symbols-outlined"> search </span>
+        <input
+          type="text"
+          name="search"
+          id="searchBar"
+          autocomplete="off"
+          placeholder="Search"
+        />
+      </form>
+      <div class="row">
+        <form id="newTaskForm">
+        <input
+          type="text"
+          name="newTask"
+          id="newTask"
+          placeholder="Add a task: "
+        />
+
+        <button id="addTask" class="button-primary">
+          Add<span class="material-symbols-outlined"> add_task </span>
+        </button>
+    </form>
+        <button id="clearAll">
+          Clear all<span class="material-symbols-outlined"> layers_clear </span>
+        </button>
+      </div>
+      <ul id="taskList"></ul>
+    </div>
+    <!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  </body>
+</html>
